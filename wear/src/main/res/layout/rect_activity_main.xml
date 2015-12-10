@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.kota.sendwearsensorvalue.MainActivity"
+    tools:deviceIds="wear_square">
+
+    <TextView
+        android:id="@+id/heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HEART_RATE : "
+        android:layout_above="@+id/accele"
+        android:layout_alignStart="@+id/accele" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACCELEROMETER"
+        android:id="@+id/accele"
+        android:layout_above="@+id/a_x"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X : "
+        android:id="@+id/a_x"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/accele" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Y : "
+        android:id="@+id/a_y"
+        android:layout_below="@+id/a_x"
+        android:layout_alignStart="@+id/a_x" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Z : "
+        android:id="@+id/a_z"
+        android:layout_below="@+id/a_y"
+        android:layout_alignStart="@+id/a_y" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIME : "
+        android:id="@+id/time"
+        android:layout_above="@+id/heart"
+        android:layout_alignStart="@+id/heart" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/nowTime"
+        android:layout_alignTop="@+id/time"
+        android:layout_toEndOf="@+id/time" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/bpm"
+        android:layout_alignTop="@+id/heart"
+        android:layout_toEndOf="@+id/heart" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accele_x"
+        android:layout_below="@+id/accele"
+        android:layout_toEndOf="@+id/a_x" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accele_y"
+        android:layout_below="@+id/accele_x"
+        android:layout_toEndOf="@+id/a_y" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accele_z"
+        android:layout_below="@+id/accele_y"
+        android:layout_toEndOf="@+id/a_z" />
+</LinearLayout>

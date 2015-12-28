@@ -23,7 +23,7 @@ public class CSV {
         try{
             //全体のデータ
             BufferedWriter bw = new BufferedWriter(
-                    new OutputStreamWriter(new FileOutputStream(TOTAL_FILE,false),"UTF-8"));
+                    new OutputStreamWriter(new FileOutputStream(TOTAL_FILE,true),"UTF-8"));
             String value = sensorValue;
             bw.write(value);
 

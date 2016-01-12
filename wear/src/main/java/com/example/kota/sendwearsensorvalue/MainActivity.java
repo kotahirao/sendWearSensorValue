@@ -84,6 +84,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 mTextAccelex = (TextView) stub.findViewById(R.id.accele_x);
                 mTextAcceley = (TextView) stub.findViewById(R.id.accele_y);
                 mTextAccelez = (TextView) stub.findViewById(R.id.accele_z);
+                mTextGyrox = (TextView) stub.findViewById(R.id.gyro_x);
+                mTextGyroy = (TextView) stub.findViewById(R.id.gyro_y);
+                mTextGyroz = (TextView) stub.findViewById(R.id.gyro_z);
             }
         });
         manager = (SensorManager)getSystemService(SENSOR_SERVICE);

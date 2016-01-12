@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -155,15 +152,15 @@ public class MainActivity extends AppCompatActivity implements
                         int j = 0;
                         String[] data = new String[5];
                         while (sensorValue.hasMoreTokens()) {
-                            data[j] = sensorValue.nextToken().toString();
+                            data[j] = sensorValue.nextToken();
                             j++;
                         }
                         if (data[0] != null && data[1] != null && data[2] != null && data[3] != null && data[4] != null) {
                             view.setSensorValue(data[0],
-                                    Float.valueOf(data[1]).floatValue(),
-                                    Float.valueOf(data[2]).floatValue(),
-                                    Float.valueOf(data[3]).floatValue(),
-                                    Float.valueOf(data[4]).floatValue());
+                                    Float.valueOf(data[1]),
+                                    Float.valueOf(data[2]),
+                                    Float.valueOf(data[3]),
+                                    Float.valueOf(data[4]));
                         }
                     }
                     graphValue = "";
@@ -185,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private Collection<String> getNodes() {
-        HashSet<String> results = new HashSet<String>();
+        HashSet<String> results = new HashSet<>();
         NodeApi.GetConnectedNodesResult nodes =
                 Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
         for (Node node : nodes.getNodes()) {

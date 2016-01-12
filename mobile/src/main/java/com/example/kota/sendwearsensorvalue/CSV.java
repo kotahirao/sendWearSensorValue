@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
-/**
+/*
  * Created by kota on 2015/12/01.
  */
 public class CSV {
@@ -23,19 +23,15 @@ public class CSV {
         try{
             //全体のデータ
             BufferedWriter bw = new BufferedWriter(
-                    new OutputStreamWriter(new FileOutputStream(TOTAL_FILE,false),"UTF-8"));
-            String value = sensorValue;
-            bw.write(value);
+                    new OutputStreamWriter(new FileOutputStream(TOTAL_FILE,true),"UTF-8"));
+            bw.write(sensorValue);
 
             bw.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public void write(String sensorValue){
 
@@ -44,14 +40,9 @@ public class CSV {
             //書き込み時の一時的なファイル
             BufferedWriter bw2 = new BufferedWriter(
                     new OutputStreamWriter(new FileOutputStream(FILE,false),"UTF-8"));
-            String value2 = sensorValue;
-            bw2.write(value2);
+            bw2.write(sensorValue);
 
             bw2.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +56,7 @@ public class CSV {
             String line;
             int i = 0;
             while((line = bufferedreader.readLine()) != null) {
-                csvLine[i] = line;
+                if (csvLine != null) csvLine[i] = line;
                 i++;
             }
             filereader.close();

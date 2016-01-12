@@ -39,6 +39,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private TextView mTextAccelex;
     private TextView mTextAcceley;
     private TextView mTextAccelez;
+    private TextView mTextGyrox;
+    private TextView mTextGyroy;
+    private TextView mTextGyroz;
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private SensorManager manager;
@@ -81,6 +84,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 mTextAccelex = (TextView) stub.findViewById(R.id.accele_x);
                 mTextAcceley = (TextView) stub.findViewById(R.id.accele_y);
                 mTextAccelez = (TextView) stub.findViewById(R.id.accele_z);
+                mTextGyrox = (TextView) stub.findViewById(R.id.gyro_x);
+                mTextGyroy = (TextView) stub.findViewById(R.id.gyro_y);
+                mTextGyroz = (TextView) stub.findViewById(R.id.gyro_z);
             }
         });
         manager = (SensorManager)getSystemService(SENSOR_SERVICE);
@@ -97,16 +103,24 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 mTextAccelex != null &&
                 mTextAcceley != null &&
                 mTextAccelez != null &&
-                mTextHeart != null) {
+                mTextHeart != null &&
+                mTextGyrox != null &&
+                mTextGyroy != null &&
+                mTextGyroz != null) {
 
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_ACCELEROMETER:
-                    if (mTextAccelex != null) mTextAccelex.setText(String.valueOf(event.values[0]));
-                    if (mTextAcceley != null) mTextAcceley.setText(String.valueOf(event.values[1]));
-                    if (mTextAccelez != null) mTextAccelez.setText(String.valueOf(event.values[2]));
+                    mTextAccelex.setText(String.valueOf(event.values[0]));
+                    mTextAcceley.setText(String.valueOf(event.values[1]));
+                    mTextAccelez.setText(String.valueOf(event.values[2]));
+                    break;
+                case Sensor.TYPE_GYROSCOPE:
+                    mTextGyrox.setText(String.valueOf(event.values[0]));
+                    mTextGyroy.setText(String.valueOf(event.values[1]));
+                    mTextGyroz.setText(String.valueOf(event.values[2]));
                     break;
                 case Sensor.TYPE_HEART_RATE:
-                    if (mTextHeart != null) mTextHeart.setText(String.valueOf(event.values[0]));
+                    mTextHeart.setText(String.valueOf(event.values[0]));
                     break;
             }
 
@@ -120,6 +134,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                     + mTextAccelex.getText() + ","
                     + mTextAcceley.getText() + ","
                     + mTextAccelez.getText() + ","
+                    + mTextGyrox.getText() + ","
+                    + mTextGyroy.getText() + ","
+                    + mTextGyroz.getText() + ","
                     + mTextHeart.getText() + "\n";
             _msg += newMsg;
             count++;
@@ -164,8 +181,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         Log.i("sensors", str);
 
         ArrayList<List<Sensor>> sensors = new ArrayList<>();
-        sensors.add( manager.getSensorList(Sensor.TYPE_ACCELEROMETER));
-        sensors.add( manager.getSensorList(Sensor.TYPE_HEART_RATE));
+        sensors.add(manager.getSensorList(Sensor.TYPE_ACCELEROMETER));
+        sensors.add(manager.getSensorList(Sensor.TYPE_GYROSCOPE));
+        sensors.add(manager.getSensorList(Sensor.TYPE_HEART_RATE));
 
         for(List<Sensor> sensor : sensors){
             if(sensor.size()>0){

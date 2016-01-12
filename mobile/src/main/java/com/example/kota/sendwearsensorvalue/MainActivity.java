@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -30,6 +27,8 @@ import com.google.android.gms.wearable.Wearable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.StringTokenizer;
+
+//branchTestPush
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -151,17 +150,18 @@ public class MainActivity extends AppCompatActivity implements
                     for (int i = 0; i < graph.length - 1; i++) {
                         sensorValue = new StringTokenizer(graph[i], ",");
                         int j = 0;
-                        String[] data = new String[5];
+                        String[] data = new String[8];
                         while (sensorValue.hasMoreTokens()) {
-                            data[j] = sensorValue.nextToken().toString();
+                            data[j] = sensorValue.nextToken();
                             j++;
                         }
-                        if (data[0] != null && data[1] != null && data[2] != null && data[3] != null && data[4] != null) {
+                        if (data[0] != null && data[1] != null && data[2] != null && data[3] != null && data[4] != null
+                                && data[5] != null && data[6] != null && data[7] != null) {
                             view.setSensorValue(data[0],
-                                    Float.valueOf(data[1]).floatValue(),
-                                    Float.valueOf(data[2]).floatValue(),
-                                    Float.valueOf(data[3]).floatValue(),
-                                    Float.valueOf(data[4]).floatValue());
+                                    Float.valueOf(data[1]),
+                                    Float.valueOf(data[2]),
+                                    Float.valueOf(data[3]),
+                                    Float.valueOf(data[7]));
                         }
                     }
                     graphValue = "";
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private Collection<String> getNodes() {
-        HashSet<String> results = new HashSet<String>();
+        HashSet<String> results = new HashSet<>();
         NodeApi.GetConnectedNodesResult nodes =
                 Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
         for (Node node : nodes.getNodes()) {

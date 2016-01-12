@@ -150,17 +150,18 @@ public class MainActivity extends AppCompatActivity implements
                     for (int i = 0; i < graph.length - 1; i++) {
                         sensorValue = new StringTokenizer(graph[i], ",");
                         int j = 0;
-                        String[] data = new String[5];
+                        String[] data = new String[8];
                         while (sensorValue.hasMoreTokens()) {
                             data[j] = sensorValue.nextToken();
                             j++;
                         }
-                        if (data[0] != null && data[1] != null && data[2] != null && data[3] != null && data[4] != null) {
+                        if (data[0] != null && data[1] != null && data[2] != null && data[3] != null && data[4] != null
+                                && data[5] != null && data[6] != null && data[7] != null) {
                             view.setSensorValue(data[0],
                                     Float.valueOf(data[1]),
                                     Float.valueOf(data[2]),
                                     Float.valueOf(data[3]),
-                                    Float.valueOf(data[4]));
+                                    Float.valueOf(data[7]));
                         }
                     }
                     graphValue = "";
